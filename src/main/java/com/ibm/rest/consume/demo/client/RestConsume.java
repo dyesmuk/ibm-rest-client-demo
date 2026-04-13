@@ -4,13 +4,13 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;
 
-import com.ibm.rest.consume.demo.model.Employee;
+import com.ibm.rest.consume.demo.model.Post;
 
 @Component
 public class RestConsume implements CommandLineRunner {
 
 	private final RestClient restClient;
-	private final String apiUrl = "https://jsonplaceholder.typicode.com/users";
+	private final String apiUrl = "https://jsonplaceholder.typicode.com/posts";
 
 	public RestConsume(RestClient.Builder builder) {
 		this.restClient = builder.baseUrl(apiUrl) // change as needed
@@ -19,8 +19,9 @@ public class RestConsume implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-
-		System.out.println(restClient.get().uri("/", "2").retrieve());
+		
+		Post post = restClient.get().uri("/{id}", "2").retrieve().body(Post.class);
+		System.out.println(post.toString());
 
 	}
 }
