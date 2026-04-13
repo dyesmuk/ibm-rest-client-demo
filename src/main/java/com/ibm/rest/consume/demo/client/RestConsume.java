@@ -1,6 +1,9 @@
 package com.ibm.rest.consume.demo.client;
 
+import java.util.List;
+
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;
 
@@ -29,12 +32,19 @@ public class RestConsume implements CommandLineRunner {
 		Employee emp = restClient.get().uri("/api/v1/employees/{id}", "oid_03027")
 				.header("Authorization", "Bearer " + token).retrieve().body(Employee.class);
 		System.out.println("Employee: " + emp);
-		
-		// 🔹 Assignment: Find out the number of employees 
-		// code 
-		int numberOfEmployees = 0;
-		System.out.println("Number of employees: " + numberOfEmployees);
 
+		// 🔹 Assignment: Find out the number of employees
+//		List<Employee> empList = restClient.get()
+//		        .uri("/api/v1/employees")
+//		        .header("Authorization", "Bearer " + token)
+//		        .retrieve()
+//		        .body(new ParameterizedTypeReference<List<Employee>>() {});
+		List<Employee> empList = List.of(restClient.get().uri("/api/v1/employees")
+				.header("Authorization", "Bearer " + token).retrieve().body(Employee[].class));
+		System.out.println("Number of employees: " + empList.size());
+
+		// 🔹 Assignment: Create a new employee - Post method 
+		
 	}
 }
 
