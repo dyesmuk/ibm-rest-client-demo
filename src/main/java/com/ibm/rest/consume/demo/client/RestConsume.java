@@ -10,6 +10,7 @@ import com.ibm.rest.consume.demo.model.Post;
 public class RestConsume implements CommandLineRunner {
 
 	private final RestClient restClient;
+
 	private final String apiUrl = "https://jsonplaceholder.typicode.com/posts";
 
 	public RestConsume(RestClient.Builder builder) {
