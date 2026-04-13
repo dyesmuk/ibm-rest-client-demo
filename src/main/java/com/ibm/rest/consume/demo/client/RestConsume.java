@@ -28,8 +28,11 @@ public class RestConsume implements CommandLineRunner {
 		// 🔹 STEP 2: CALL SECURED API
 		Employee emp = restClient.get().uri("/api/v1/employees/{id}", "oid_03027")
 				.header("Authorization", "Bearer " + token).retrieve().body(Employee.class);
-
 		System.out.println("Employee: " + emp);
+		
+		// 🔹 Assignment: Find out the number of employees 
+		// code 
+
 	}
 }
 
