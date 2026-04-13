@@ -32,6 +32,8 @@ public class RestConsume implements CommandLineRunner {
 		
 		// 🔹 Assignment: Find out the number of employees 
 		// code 
+		int numberOfEmployees = 0;
+		System.out.println("Number of employees: " + numberOfEmployees);
 
 	}
 }
